@@ -1,0 +1,17 @@
+﻿{
+  "name": "SafeCall AI - 보이스피싱 예방",
+  "short_name": "SafeCall AI",
+  "description": "문자, URL, 통화 내용을 분석해 보이스피싱 위험도를 알려주는 앱",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

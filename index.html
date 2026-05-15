@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SafeCall AI</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="icon.svg" />
+
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-title" content="SafeCall AI" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="badge">AI 보이스피싱 예방</div>
+      <h1>SafeCall AI</h1>
+      <p>
+        문자, URL, 통화 내용을 붙여넣고 보이스피싱 위험도를 확인하세요.
+      </p>
+    </section>
+
+    <section class="card">
+      <label for="inputText">분석할 내용</label>
+      <textarea id="inputText" placeholder="예: 검찰청입니다. 계좌가 범죄에 이용되었습니다. 인증번호를 알려주시고 보안앱을 설치하세요."></textarea>
+
+      <button id="analyzeButton">AI 위험도 분석</button>
+      <button id="clearButton" class="secondary">내용 지우기</button>
+    </section>
+
+    <section id="resultBox" class="card result hidden">
+      <h2>분석 결과</h2>
+      <div class="score-row">
+        <span>위험도</span>
+        <strong id="riskLevel">-</strong>
+      </div>
+      <div class="score-row">
+        <span>점수</span>
+        <strong id="riskScore">0/100</strong>
+      </div>
+
+      <div class="bar">
+        <div id="scoreBar"></div>
+      </div>
+
+      <h3>탐지 사유</h3>
+      <ul id="reasonList"></ul>
+
+      <div id="adviceBox" class="advice hidden">
+        <strong>권장 행동</strong>
+        <p>
+          통화를 즉시 끊고, 문자 링크를 누르지 말고, 공식 대표번호로 직접 확인하세요.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>바로 쓰는 거절 멘트</h2>
+      <div class="script-list">
+        <button class="copy-script">지금 통화로는 확인하지 않겠습니다. 공식 대표번호로 직접 전화하겠습니다.</button>
+        <button class="copy-script">인증번호와 계좌 정보는 알려드릴 수 없습니다.</button>
+        <button class="copy-script">앱 설치 요청은 보이스피싱 위험이 있어 거절합니다.</button>
+        <button class="copy-script">가족과 확인 후 다시 연락하겠습니다.</button>
+      </div>
+      <p id="copyNotice" class="notice"></p>
+    </section>
+
+    <section class="card">
+      <h2>긴급 행동 요령</h2>
+      <ol>
+        <li>통화를 끊습니다.</li>
+        <li>문자 링크를 누르지 않습니다.</li>
+        <li>앱 설치, 화면 공유, 원격제어 요청을 거절합니다.</li>
+        <li>은행, 경찰, 기관 대표번호를 직접 검색해서 확인합니다.</li>
+        <li>피해가 의심되면 즉시 신고합니다.</li>
+      </ol>
+    </section>
+
+    <footer>
+      <p>
+        이 앱은 위험도 참고용입니다. 실제 판단은 공식 기관 확인과 함께 하세요.
+      </p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
