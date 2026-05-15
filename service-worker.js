@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = "safecall-ai-v2";
+﻿const CACHE_NAME = "safecall-ai-v5";
 
 const FILES_TO_CACHE = [
   "./",
@@ -30,13 +30,6 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  const url = new URL(event.request.url);
-
-  if (url.pathname.includes("/data/")) {
-    event.respondWith(fetch(event.request));
-    return;
-  }
-
   event.respondWith(
     caches.match(event.request).then((cached) => cached || fetch(event.request))
   );

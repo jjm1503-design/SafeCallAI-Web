@@ -15,6 +15,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 </head>
+
 <body>
   <main class="app">
     <section class="hero">
@@ -32,20 +33,29 @@
 
     <section class="card">
       <h2>전화번호 위험도 분석</h2>
-      <label for="phoneInput">의심되는 전화번호</label>
-      <input id="phoneInput" type="tel" placeholder="예: 070-0000-0000 또는 010-1234-5678" />
 
-      <button id="analyzePhoneButton">전화번호 보이스피싱 확률 분석</button>
+      <label for="phoneInput">의심되는 전화번호</label>
+      <input
+        id="phoneInput"
+        type="tel"
+        placeholder="예: 070-1234-5678 또는 010-1234-5678"
+      />
+
+      <button id="analyzePhoneButton">
+        전화번호 보이스피싱 확률 분석
+      </button>
 
       <div id="phoneResultBox" class="result-box hidden">
         <div class="score-row">
           <span>판단</span>
           <strong id="phoneRiskLevel">-</strong>
         </div>
+
         <div class="score-row">
           <span>보이스피싱 위험 확률 추정</span>
           <strong id="phoneRiskScore">0%</strong>
         </div>
+
         <div class="bar">
           <div id="phoneScoreBar"></div>
         </div>
@@ -53,28 +63,47 @@
         <h3>판단 사유</h3>
         <ul id="phoneReasonList"></ul>
 
-        <button id="saveBlockCandidateButton" class="danger">차단 후보로 저장</button>
+        <button id="saveBlockCandidateButton" class="danger">
+          차단 후보로 저장
+        </button>
+
         <p class="small">
-          실제 iPhone 자동 차단은 웹앱에서 직접 할 수 없습니다. 차단 후보로 저장한 뒤 iPhone 전화 앱에서 직접 차단하세요.
+          iPhone 웹앱에서는 실제 수신전화를 자동 차단할 수 없습니다.
+          위험 번호는 iPhone 전화 앱에서 직접 차단하세요.
         </p>
       </div>
     </section>
 
     <section class="card">
       <h2>문자·URL·통화 내용 분석</h2>
-      <label for="inputText">분석할 내용</label>
-      <textarea id="inputText" placeholder="예: 검찰청입니다. 계좌가 범죄에 이용되었습니다. 인증번호를 알려주시고 보안앱을 설치하세요."></textarea>
 
-      <button id="analyzeButton">AI 위험도 분석</button>
-      <button id="clearButton" class="secondary">내용 지우기</button>
+      <label for="inputText">분석할 내용</label>
+      <textarea
+        id="inputText"
+        placeholder="예: 검찰청입니다. 계좌가 범죄에 이용되었습니다. 인증번호를 알려주시고 보안앱을 설치하세요."
+      ></textarea>
+
+      <button id="analyzeButton">
+        기본 위험도 분석
+      </button>
+
+      <button id="analyzeWithServerButton" class="secondary">
+        AI 서버 정밀 분석
+      </button>
+
+      <button id="clearButton" class="secondary">
+        내용 지우기
+      </button>
     </section>
 
     <section id="resultBox" class="card result hidden">
       <h2>분석 결과</h2>
+
       <div class="score-row">
         <span>위험도</span>
         <strong id="riskLevel">-</strong>
       </div>
+
       <div class="score-row">
         <span>점수</span>
         <strong id="riskScore">0/100</strong>
@@ -90,43 +119,106 @@
       <div id="adviceBox" class="advice hidden">
         <strong>권장 행동</strong>
         <p>
-          통화를 즉시 끊고, 문자 링크를 누르지 말고, 공식 대표번호로 직접 확인하세요.
+          통화를 즉시 끊고, 문자 링크를 누르지 말고,
+          공식 대표번호로 직접 확인하세요.
         </p>
       </div>
     </section>
 
     <section class="card">
       <h2>최신 예방 알림 카드</h2>
+
+      <p class="small">
+        새로고침 버튼을 누르면 AI 서버가 경찰청 관련 피싱 예·경보 최신 내용을
+        다시 불러오고, 예방 카드 문구를 새롭게 표시합니다.
+      </p>
+
       <div id="preventionFeed" class="feed">
         <p>예방 문구를 불러오는 중입니다.</p>
       </div>
-      <button id="refreshFeedButton" class="secondary">최신 예방 문구 새로고침</button>
+
+      <button id="refreshFeedButton" class="secondary">
+        최신 문구 새로고침
+      </button>
+
+      <button id="createPreventionImageButton">
+        예방 카드 이미지 만들기
+      </button>
+
+      <button id="sharePreventionImageButton" class="secondary">
+        예방 카드 공유/저장
+      </button>
+
+      <canvas
+        id="preventionCanvas"
+        width="1080"
+        height="1080"
+        class="hidden"
+      ></canvas>
+
+      <div id="imagePreviewBox" class="image-preview hidden">
+        <h3>생성된 예방 카드</h3>
+        <img
+          id="preventionImagePreview"
+          alt="보이스피싱 예방 카드 이미지"
+        />
+        <a
+          id="downloadImageLink"
+          download="safecall-prevention-card.png"
+        >
+          이미지 다운로드
+        </a>
+      </div>
     </section>
 
     <section class="card">
       <h2>차단 후보 목록</h2>
+
       <ul id="blockCandidateList"></ul>
-      <button id="clearCandidatesButton" class="secondary">차단 후보 목록 비우기</button>
+
+      <button id="clearCandidatesButton" class="secondary">
+        차단 후보 목록 비우기
+      </button>
+
+      <p class="small">
+        이 목록은 현재 브라우저에만 저장됩니다.
+        실제 차단은 iPhone 전화 앱에서 직접 진행해야 합니다.
+      </p>
     </section>
 
     <section class="card">
       <h2>바로 쓰는 거절 멘트</h2>
+
       <div class="script-list">
-        <button class="copy-script">지금 통화로는 확인하지 않겠습니다. 공식 대표번호로 직접 전화하겠습니다.</button>
-        <button class="copy-script">인증번호와 계좌 정보는 알려드릴 수 없습니다.</button>
-        <button class="copy-script">앱 설치 요청은 보이스피싱 위험이 있어 거절합니다.</button>
-        <button class="copy-script">가족과 확인 후 다시 연락하겠습니다.</button>
+        <button class="copy-script">
+          지금 통화로는 확인하지 않겠습니다. 공식 대표번호로 직접 전화하겠습니다.
+        </button>
+
+        <button class="copy-script">
+          인증번호와 계좌 정보는 알려드릴 수 없습니다.
+        </button>
+
+        <button class="copy-script">
+          앱 설치 요청은 보이스피싱 위험이 있어 거절합니다.
+        </button>
+
+        <button class="copy-script">
+          가족과 확인 후 다시 연락하겠습니다.
+        </button>
       </div>
+
       <p id="copyNotice" class="notice"></p>
     </section>
 
     <section class="card emergency">
       <h2>공식 신고·상담 안내</h2>
+
       <div class="quick-grid">
         <a href="tel:112">피해 신고 112</a>
         <a href="tel:1332">지급정지 1332</a>
         <a href="tel:118">스미싱 상담 118</a>
       </div>
+
       <p>
         피해가 의심되면 통화를 끊고 공식 번호로 직접 확인하세요.
       </p>
@@ -134,7 +226,8 @@
 
     <footer>
       <p>
-        이 앱의 위험도는 참고용입니다. 실제 차단과 신고는 공식 기관 확인과 함께 진행하세요.
+        SafeCall AI의 위험도 분석은 참고용입니다.
+        실제 신고, 지급정지, 차단은 공식 기관 확인과 함께 진행하세요.
       </p>
     </footer>
   </main>
