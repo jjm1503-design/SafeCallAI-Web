@@ -27,4 +27,15 @@
     "source": "KISA 118 상담 안내",
     "updatedAt": "2026-05-15"
   }
-]
+{
+  "title": "신종 AI 음성 사칭 주의",
+  "message": "가족 목소리처럼 들려도 송금 요구가 있으면 반드시 다른 연락수단으로 본인 확인을 하세요.",
+  "level": "매우 중요",
+  "source": "앱 예방 데이터",
+  "updatedAt": "2026-05-15"
+}
+{
+git add .
+git commit -m "Add phone risk analysis and prevention feed"
+git push
+}
