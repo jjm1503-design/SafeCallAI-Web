@@ -34,8 +34,4 @@
   "source": "앱 예방 데이터",
   "updatedAt": "2026-05-15"
 }
-{
-git add .
-git commit -m "Add phone risk analysis and prevention feed"
-git push
-}
+
