@@ -25,7 +25,7 @@ body {
   border-radius: 999px;
   background: #1e293b;
   color: #93c5fd;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 14px;
 }
 
@@ -58,23 +58,46 @@ p {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
+.alert {
+  background: #7f1d1d;
+  border: 1px solid #ef4444;
+  border-radius: 20px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.alert strong {
+  display: block;
+  font-size: 20px;
+  color: #fee2e2;
+}
+
+.alert p {
+  margin-bottom: 0;
+  color: #fee2e2;
+}
+
 label {
   display: block;
   margin-bottom: 8px;
   font-weight: 800;
 }
 
+input,
 textarea {
   width: 100%;
-  min-height: 180px;
   border: 1px solid #334155;
   border-radius: 16px;
   padding: 14px;
-  resize: vertical;
   background: #020617;
   color: #f8fafc;
   font-size: 16px;
   line-height: 1.5;
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
 }
 
 button {
@@ -98,13 +121,26 @@ button.secondary {
   background: #334155;
 }
 
+button.danger {
+  background: #dc2626;
+}
+
 .script-list button {
   text-align: left;
   background: #1e293b;
 }
 
-.result {
+.result,
+.result-box {
   border-color: #3b82f6;
+}
+
+.result-box {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  background: #020617;
 }
 
 .hidden {
@@ -132,7 +168,8 @@ button.secondary {
   margin: 18px 0;
 }
 
-#scoreBar {
+#scoreBar,
+#phoneScoreBar {
   height: 100%;
   width: 0%;
   background: #22c55e;
@@ -165,8 +202,95 @@ ol {
   font-weight: 700;
 }
 
+.feed {
+  display: grid;
+  gap: 14px;
+}
+
+.feed-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 180px;
+  background:
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.35), transparent 30%),
+    linear-gradient(135deg, #1e3a8a, #0f172a);
+  border: 1px solid #38bdf8;
+}
+
+.feed-card::after {
+  content: "SAFE";
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  font-size: 48px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.08);
+}
+
+.feed-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #bfdbfe;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.feed-card h3 {
+  margin: 16px 0 8px;
+  font-size: 22px;
+}
+
+.feed-card p {
+  color: #eff6ff;
+}
+
+.feed-meta {
+  font-size: 13px;
+  color: #bfdbfe;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.quick-grid a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  background: #2563eb;
+  padding: 14px 10px;
+  border-radius: 14px;
+  font-weight: 900;
+}
+
+.emergency {
+  border-color: #ef4444;
+}
+
+.small {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
 footer {
   padding: 20px 0 40px;
   text-align: center;
   font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .quick-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
 }
